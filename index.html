@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="தமிழ் வாக்கிய தொகுப்பி — Lexical, Syntax, and Semantic Analysis for Tamil Sentences">
+  <title>தமிழ் வாக்கிய தொகுப்பி | Tamil Sentence Compiler</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔤</text></svg>">
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- ── Header ── -->
+    <header class="header">
+      <div class="header-badge">
+        <span class="dot"></span>
+        <span>Compiler Design Project — Team 5</span>
+      </div>
+      <h1><span class="tamil-text">தமிழ் வாக்கிய</span> தொகுப்பு</h1>
+      <p>சொல்லாய்வு, தொடரியல், பொருள்சார் பகுப்பாய்வு — Tamil Sentence Compiler with Lexical, Syntax & Semantic Analysis
+      </p>
+    </header>
+
+    <!-- ── Compilation Pipeline ── -->
+    <div class="pipeline" id="pipeline">
+      <div class="pipeline-step">
+        <span class="step-icon">📝</span>
+        <span>உள்ளீடு</span>
+      </div>
+      <span class="pipeline-arrow">→</span>
+      <div class="pipeline-step">
+        <span class="step-icon">🔤</span>
+        <span>சொல்லாய்வு</span>
+      </div>
+      <span class="pipeline-arrow">→</span>
+      <div class="pipeline-step">
+        <span class="step-icon">🌳</span>
+        <span>தொடரியல்</span>
+      </div>
+      <span class="pipeline-arrow">→</span>
+      <div class="pipeline-step">
+        <span class="step-icon">🧠</span>
+        <span>பொருள்சார்</span>
+      </div>
+      <span class="pipeline-arrow">→</span>
+      <div class="pipeline-step">
+        <span class="step-icon">✅</span>
+        <span>முடிவு</span>
+      </div>
+    </div>
+
+    <!-- ── Input Section ── -->
+    <div class="card input-section">
+      <div class="card-header">
+        <span class="icon">⌨️</span>
+        <h2>தமிழ் வாக்கியம் உள்ளிடுக</h2>
+        <span class="tag">Input</span>
+      </div>
+      <div class="input-wrapper">
+        <textarea id="tamil-input" class="tamil-input"
+          placeholder="இங்கே தமிழ் வாக்கியத்தை தட்டச்சு செய்யவும்…  (உ.தா: நான் ஓடுகிறேன்)" rows="2"
+          spellcheck="false"></textarea>
+      </div>
+      <div class="input-actions">
+        <button id="compile-btn" class="btn btn-primary">
+          <span>▶</span>
+          தொகு (Compile)
+        </button>
+        <button id="clear-btn" class="btn btn-secondary">
+          <span>✕</span>
+          அழி (Clear)
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Examples Section ── -->
+    <div class="card examples-section">
+      <div class="card-header">
+        <span class="icon">📋</span>
+        <h2>எடுத்துக்காட்டு வாக்கியங்கள்</h2>
+        <span class="tag">Examples</span>
+      </div>
+      <div class="examples-grid" id="examples-grid">
+        <!-- Dynamically populated by compiler.js -->
+      </div>
+    </div>
+
+    <!-- ── Results Section ── -->
+    <div class="results-section" id="results-section">
+
+      <!-- Result Banner -->
+      <div class="result-banner" id="result-banner"></div>
+
+      <!-- Phase Panels -->
+      <div class="phases-grid">
+
+        <!-- Phase 1: Lexer -->
+        <div class="phase-card" id="phase-lexer">
+          <div class="phase-header" onclick="togglePhase('phase-lexer')">
+            <span class="phase-number">1</span>
+            <span class="phase-title">சொல்லாய்வு — Lexical Analysis</span>
+            <span class="phase-status"></span>
+            <span class="phase-toggle">▾</span>
+          </div>
+          <div class="phase-body">
+            <div class="phase-content" id="phase-lexer-content"></div>
+          </div>
+        </div>
+
+        <!-- Phase 2: Parser -->
+        <div class="phase-card" id="phase-parser">
+          <div class="phase-header" onclick="togglePhase('phase-parser')">
+            <span class="phase-number">2</span>
+            <span class="phase-title">தொடரியல் — Syntax Analysis</span>
+            <span class="phase-status"></span>
+            <span class="phase-toggle">▾</span>
+          </div>
+          <div class="phase-body">
+            <div class="phase-content" id="phase-parser-content"></div>
+          </div>
+        </div>
+
+        <!-- Phase 3: Semantic -->
+        <div class="phase-card" id="phase-semantic">
+          <div class="phase-header" onclick="togglePhase('phase-semantic')">
+            <span class="phase-number">3</span>
+            <span class="phase-title">பொருள்சார் — Semantic Analysis</span>
+            <span class="phase-status"></span>
+            <span class="phase-toggle">▾</span>
+          </div>
+          <div class="phase-body">
+            <div class="phase-content" id="phase-semantic-content"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <p>
+        <span class="team">Team 5</span> — Compiler Design Project
+      </p>
+      <p style="margin-top:4px">
+        தமிழ் வாக்கிய தொகுப்பி — ANTLR4 Grammar ↔ JavaScript Implementation
+      </p>
+    </footer>
+
+  </div>
+
+  <script src="compiler.js"></script>
+</body>
+
+</html>
